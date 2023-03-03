@@ -43,7 +43,39 @@ class MinHeap:
         """
         TODO: Write this implementation
         """
-        pass
+        
+        if self._heap.is_empty():
+            self._heap.append(node)
+            return
+
+
+
+        self._heap.append(node)
+        node_index = self._heap.length() - 1
+        parent_index = (node_index - 1) // 2
+        # new_node = self._heap[node_index]
+        parent = self._heap[parent_index]
+
+
+        while parent > node:
+            temp = parent
+            self._heap[parent_index] = node
+            self._heap[node_index] = temp
+            node_index = parent_index
+            
+            if node_index == 0:
+                return
+            else:
+                parent_index = (node_index - 1) // 2
+                parent = self._heap[parent_index]
+        
+        # calc parent location
+        # compare value of parent to its own
+        # swap if needed
+        # do over till reached the head of array
+
+
+        
 
     def is_empty(self) -> bool:
         """
