@@ -141,12 +141,12 @@ class MinHeap:
                 child_1_index = 2 * node_to_check_index + 1
                 child_2_index = 2 * node_to_check_index + 2
 
-                if child_1_index == self._heap.length() - 1:
-                    if node_to_check > self._heap[child_1_index]:
-                        temp = node_to_check
-                        self._heap[node_to_check_index] = self._heap[
-                            child_1_index]
-                        self._heap[child_1_index] = temp
+                # if child_1_index == self._heap.length() - 1:
+                #     if node_to_check > self._heap[child_1_index]:
+                #         temp = node_to_check
+                #         self._heap[node_to_check_index] = self._heap[
+                #             child_1_index]
+                #         self._heap[child_1_index] = temp
 
         return return_value
 
