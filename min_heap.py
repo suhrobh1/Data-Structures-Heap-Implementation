@@ -144,8 +144,6 @@ class MinHeap:
             else:
                 smaller_child_index = child_2_index
 
-             
-
             if node_to_check > smaller_child:
                 temp = self._heap[node_to_check_index]
                 self._heap[node_to_check_index] = smaller_child
@@ -155,6 +153,13 @@ class MinHeap:
                 node_to_check = self._heap[node_to_check_index]
                 child_1_index = 2 * node_to_check_index + 1
                 child_2_index = 2 * node_to_check_index + 2
+
+            if child_1_index == self._heap.length():
+                if node_to_check > self._heap[smaller_child_index]:
+                    temp = self._heap[node_to_check_index]
+                    self._heap[node_to_check_index] = self._heap[smaller_child_index]
+                    self._heap[smaller_child_index] = temp
+                    
         return return_value    
 
 
@@ -244,6 +249,16 @@ if __name__ == '__main__':
     # h = MinHeap(['fish', 'bird'])
     # print(h)
     # print(h.get_min(), h.get_min())
+
+    print("\nPDF - remove_min example 1")
+    print("--------------------------")
+    h = MinHeap(['NoMYY', 'QHDqUDE', 'kQ', 'Rh_ESJQK', 'fkxT'])
+    while not h.is_empty() and h.is_empty() is not None:
+        print(h, end=' ')
+        print(h.remove_min())
+
+
+    
 
     print("\nPDF - remove_min example 1")
     print("--------------------------")
