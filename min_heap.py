@@ -69,19 +69,17 @@ class MinHeap:
                 parent_index = (node_index - 1) // 2
                 parent = self._heap[parent_index]
         
-        # calc parent location
-        # compare value of parent to its own
-        # swap if needed
-        # do over till reached the head of array
 
-
-        
+      
 
     def is_empty(self) -> bool:
         """
         TODO: Write this implementation
         """
-        pass
+        if self._heap.length():
+            return True
+        else:
+            return False
 
     def get_min(self) -> object:
         """
