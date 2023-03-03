@@ -48,8 +48,6 @@ class MinHeap:
             self._heap.append(node)
             return
 
-
-
         self._heap.append(node)
         node_index = self._heap.length() - 1
         parent_index = (node_index - 1) // 2
@@ -98,7 +96,65 @@ class MinHeap:
         """
         TODO: Write this implementation
         """
-        pass
+
+        return_value = self._heap[0]
+
+        if self._heap.length() == 0:
+            raise MinHeapException
+        elif self._heap.length() == 1:
+            return return_value
+       
+
+
+        # last is now first
+       
+
+        self._heap[0] = self._heap[self._heap.length() -1]
+        self._heap.remove_at_index(self._heap.length() -1)
+
+        if self._heap.length() == 2:
+            if self._heap[0] > self._heap[1]:
+                temp = self._heap[0]
+                self._heap[0] = self._heap[1]
+                self._heap[1] = temp
+                return return_value
+
+
+
+        node_to_check_index = 0
+        node_to_check = self._heap[node_to_check_index]
+        child_1_index = 2 * node_to_check_index + 1
+        child_2_index = 2 * node_to_check_index + 2
+
+        while child_1_index < self._heap.length() and child_2_index < self._heap.length():
+            child_1 = self._heap[child_1_index]
+            child_2 = self._heap[child_2_index]
+            smaller_child = min(child_1, child_2)
+
+            if smaller_child == child_1:
+                smaller_child_index = child_1_index
+            else:
+                smaller_child_index = child_2_index
+
+             # remembert to change : if both children are equal   
+
+            if node_to_check > smaller_child:
+                temp = self._heap[node_to_check_index]
+                self._heap[node_to_check_index] = smaller_child
+                self._heap[smaller_child_index] = temp
+
+                node_to_check_index = smaller_child_index
+                node_to_check = self._heap[node_to_check_index]
+                child_1_index = 2 * node_to_check_index + 1
+                child_2_index = 2 * node_to_check_index + 2
+        return return_value    
+
+
+
+
+
+
+
 
     def build_heap(self, da: DynamicArray) -> None:
         """
