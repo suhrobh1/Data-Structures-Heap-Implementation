@@ -5,7 +5,6 @@
 # Due Date:
 # Description:
 
-
 from dynamic_array import *
 
 
@@ -18,6 +17,7 @@ class MinHeapException(Exception):
 
 
 class MinHeap:
+
     def __init__(self, start_heap=None):
         """
         Initialize a new MinHeap
@@ -43,7 +43,7 @@ class MinHeap:
         """
         TODO: Write this implementation
         """
-        
+
         if self._heap.is_empty():
             self._heap.append(node)
             return
@@ -54,19 +54,17 @@ class MinHeap:
         # new_node = self._heap[node_index]
         parent = self._heap[parent_index]
 
-
         while parent > node:
             temp = parent
             self._heap[parent_index] = node
             self._heap[node_index] = temp
             node_index = parent_index
-            
+
             if node_index == 0:
                 return
             else:
                 parent_index = (node_index - 1) // 2
                 parent = self._heap[parent_index]
-        
 
     def is_empty(self) -> bool:
         """
@@ -77,20 +75,15 @@ class MinHeap:
         else:
             return True
 
-
     def get_min(self) -> object:
         """
         TODO: Write this implementation
         """
-        
+
         if self._heap.length():
             return self._heap[0]
         else:
             raise MinHeapException
-             
-
-
-
 
     def remove_min(self) -> object:
         """
@@ -99,22 +92,17 @@ class MinHeap:
 
         if self._heap.is_empty():
             raise MinHeapException
-        
-        
-        return_value = self._heap[0]
 
+        return_value = self._heap[0]
 
         if self._heap.length() == 1:
             self._heap.remove_at_index(0)
             return return_value
-       
-
 
         # last is now first
-       
 
-        self._heap[0] = self._heap[self._heap.length() -1]
-        self._heap.remove_at_index(self._heap.length() -1)
+        self._heap[0] = self._heap[self._heap.length() - 1]
+        self._heap.remove_at_index(self._heap.length() - 1)
 
         if self._heap.length() == 2:
             if self._heap[0] > self._heap[1]:
@@ -123,14 +111,13 @@ class MinHeap:
                 self._heap[1] = temp
                 return return_value
 
-
-
         node_to_check_index = 0
         node_to_check = self._heap[node_to_check_index]
         child_1_index = 2 * node_to_check_index + 1
         child_2_index = 2 * node_to_check_index + 2
 
-        while child_1_index < self._heap.length() and child_2_index < self._heap.length():
+        while child_1_index < self._heap.length(
+        ) and child_2_index < self._heap.length():
             child_1 = self._heap[child_1_index]
             child_2 = self._heap[child_2_index]
 
@@ -154,28 +141,20 @@ class MinHeap:
                 child_1_index = 2 * node_to_check_index + 1
                 child_2_index = 2 * node_to_check_index + 2
 
-            if child_1_index == self._heap.length():
-                if node_to_check > self._heap[smaller_child_index]:
-                    temp = self._heap[node_to_check_index]
-                    self._heap[node_to_check_index] = self._heap[smaller_child_index]
-                    self._heap[smaller_child_index] = temp
-                    
-        return return_value    
+                if child_1_index == self._heap.length() - 1:
+                    if node_to_check > self._heap[child_1_index]:
+                        temp = node_to_check
+                        self._heap[node_to_check_index] = self._heap[
+                            child_1_index]
+                        self._heap[child_1_index] = temp
 
-
-
-
+        return return_value
 
     def build_heap(self, da: DynamicArray) -> None:
         """
         TODO: Write this implementation
         """
         pass
-
-
-
-
-
 
     def size(self) -> int:
         """
@@ -190,9 +169,8 @@ class MinHeap:
         """
         TODO: Write this implementation
         """
-        
+
         self._heap = DynamicArray()
-       
 
 
 def heapsort(da: DynamicArray) -> None:
@@ -206,6 +184,7 @@ def heapsort(da: DynamicArray) -> None:
 # function for percolating elements down the MinHeap. You can call           #
 # this from inside the MinHeap class. You may edit the function definition.  #
 
+
 def _percolate_down(da: DynamicArray, parent: int) -> None:
     """
     TODO: Write your implementation
@@ -214,7 +193,6 @@ def _percolate_down(da: DynamicArray, parent: int) -> None:
 
 
 # ------------------- BASIC TESTING -----------------------------------------
-
 
 if __name__ == '__main__':
 
@@ -253,12 +231,10 @@ if __name__ == '__main__':
     print("\nPDF - remove_min example 1")
     print("--------------------------")
     h = MinHeap(['NoMYY', 'QHDqUDE', 'kQ', 'Rh_ESJQK', 'fkxT'])
-    while not h.is_empty() and h.is_empty() is not None:
-        print(h, end=' ')
-        print(h.remove_min())
 
-
-    
+    print(h, end=' ')
+    print(h.remove_min())
+    print(h, end=' ')
 
     print("\nPDF - remove_min example 1")
     print("--------------------------")
@@ -283,7 +259,9 @@ if __name__ == '__main__':
     print("Your MinHeap:")
     print(h)
     if h.get_min() == 500:
-        print("Error: input array and heap's underlying DA reference same object in memory")
+        print(
+            "Error: input array and heap's underlying DA reference same object in memory"
+        )
 
     print("\nPDF - heapsort example 1")
     print("------------------------")
