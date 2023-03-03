@@ -119,25 +119,64 @@ class MinHeap:
         """
         TODO: Write this implementation
         """
-        if self._heap.is_empty():
-            raise MinHeapException
 
-        
+        print("Printing DA------------------", da)
+
+        # Create new Dynamic Array
+        # Copy over the values that are in the provided dynamic array
+        # Heap process on values in the new array
+        # Set the new array to be self._heap
+        # print("da length: ", da.length())
+        heap_length = self._heap.length()
+        counter = 0
+        # print(heap_length)
+        for i in range(0, da.length()):
+            # print("i", i)
+            if counter < heap_length:
+                self._heap[i] = da[i]
+                counter += 1
+            else:
+                self._heap.append(da[i])
+
+        print("The heap", self._heap)
+
         if self._heap.length() == 2:
             if self._heap[0] > self._heap[1]:
-                self._heap[0], self._heap[1] =  self._heap[1], self._heap[0]
+                self._heap[0], self._heap[1] = self._heap[1], self._heap[0]
                 return
-             
-        
-        
-        first_index = (self._heap.length()//2) - 1
-        print(first_index)
 
+        node_to_check_index = (self._heap.length() // 2) - 1
 
+        while node_to_check_index >= 0:
+            # establishing variables
+            node_to_check = self._heap[node_to_check_index]
+            child_1_index = 2 * node_to_check_index + 1
+            child_2_index = 2 * node_to_check_index + 2
+            child_1 = self._heap[child_1_index]
+            child_2 = self._heap[child_2_index]
 
+            # determining smaller of the children
+            if child_1 == child_2:
+                smaller_child = child_2
+            else:
+                smaller_child = min(child_1, child_2)
 
+            # getting the index of the smaller child
+            if smaller_child == child_1:
+                smaller_child_index = child_1_index
+            else:
+                smaller_child_index = child_2_index
 
-        
+            # Swap node with smaller child if node is greater than child
+            if node_to_check > smaller_child:
+                # temp = self._heap[node_to_check_index]
+                self._heap[node_to_check_index] = self._heap[smaller_child_index]
+                self._heap[smaller_child_index] = node_to_check
+                print("booome---------")
+
+            node_to_check_index = node_to_check_index - 1
+
+            print("node to check index", node_to_check_index)
 
     def size(self) -> int:
         """
@@ -266,26 +305,26 @@ if __name__ == '__main__':
     # print(h)
     # print(h.get_min(), h.get_min())
 
-    print("\nPDF - remove_min example 1")
-    print("--------------------------")
-    h = MinHeap([-7284, 5470, 82852, 82852, 88135])
-    print(h, end=' ')
-    print(h.remove_min())
-    print(h, end=' ')
+    # print("\nPDF - remove_min example 1")
+    # print("--------------------------")
+    # h = MinHeap([-7284, 5470, 82852, 82852, 88135])
+    # print(h, end=' ')
+    # print(h.remove_min())
+    # print(h, end=' ')
 
-    print("\nPDF - remove_min example 1")
-    print("--------------------------")
-    h = MinHeap(['NoMYY', 'QHDqUDE', 'kQ', 'Rh_ESJQK', 'fkxT'])
-    print(h, end=' ')
-    print(h.remove_min())
-    print(h, end=' ')
+    # print("\nPDF - remove_min example 1")
+    # print("--------------------------")
+    # h = MinHeap(['NoMYY', 'QHDqUDE', 'kQ', 'Rh_ESJQK', 'fkxT'])
+    # print(h, end=' ')
+    # print(h.remove_min())
+    # print(h, end=' ')
 
-    print("\nPDF - remove_min example 1")
-    print("--------------------------")
-    h = MinHeap([1, 10, 2, 9, 3, 8, 4, 7, 5, 6])
-    while not h.is_empty() and h.is_empty() is not None:
-        print(h, end=' ')
-        print(h.remove_min())
+    # print("\nPDF - remove_min example 1")
+    # print("--------------------------")
+    # h = MinHeap([1, 10, 2, 9, 3, 8, 4, 7, 5, 6])
+    # while not h.is_empty() and h.is_empty() is not None:
+    #     print(h, end=' ')
+    #     print(h.remove_min())
 
     print("\nPDF - build_heap example 1")
     print("--------------------------")
@@ -295,31 +334,31 @@ if __name__ == '__main__':
     h.build_heap(da)
     print(h)
 
-    print("--------------------------")
-    print("Inserting 500 into input DA:")
-    da[0] = 500
-    print(da)
+    # print("--------------------------")
+    # print("Inserting 500 into input DA:")
+    # da[0] = 500
+    # print(da)
 
-    print("Your MinHeap:")
-    print(h)
-    if h.get_min() == 500:
-        print(
-            "Error: input array and heap's underlying DA reference same object in memory"
-        )
+    # print("Your MinHeap:")
+    # print(h)
+    # if h.get_min() == 500:
+    #     print(
+    #         "Error: input array and heap's underlying DA reference same object in memory"
+    #     )
 
-    print("\nPDF - heapsort example 1")
-    print("------------------------")
-    da = DynamicArray([100, 20, 6, 200, 90, 150, 300])
-    print(f"Before: {da}")
-    heapsort(da)
-    print(f"After:  {da}")
+    # print("\nPDF - heapsort example 1")
+    # print("------------------------")
+    # da = DynamicArray([100, 20, 6, 200, 90, 150, 300])
+    # print(f"Before: {da}")
+    # heapsort(da)
+    # print(f"After:  {da}")
 
-    print("\nPDF - heapsort example 2")
-    print("------------------------")
-    da = DynamicArray(['monkey', 'zebra', 'elephant', 'horse', 'bear'])
-    print(f"Before: {da}")
-    heapsort(da)
-    print(f"After:  {da}")
+    # print("\nPDF - heapsort example 2")
+    # print("------------------------")
+    # da = DynamicArray(['monkey', 'zebra', 'elephant', 'horse', 'bear'])
+    # print(f"Before: {da}")
+    # heapsort(da)
+    # print(f"After:  {da}")
 
     # print("\nPDF - size example 1")
     # print("--------------------")
