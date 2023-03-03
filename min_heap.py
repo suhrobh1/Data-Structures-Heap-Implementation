@@ -134,12 +134,10 @@ class MinHeap:
             child_1 = self._heap[child_1_index]
             child_2 = self._heap[child_2_index]
 
-            if child_1 > child_2:
+            if child_1 == child_2:
                 smaller_child = child_2
-            elif child_1 < child_2:
-                smaller_child = child_1
             else:
-                smaller_child = child_2
+                smaller_child = min(child_1, child_2)
 
             if smaller_child == child_1:
                 smaller_child_index = child_1_index
