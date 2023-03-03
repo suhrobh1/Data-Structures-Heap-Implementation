@@ -186,19 +186,28 @@ def _percolate_down(da: DynamicArray, node_to_check_index: int) -> None:
             child_1_index = 2 * node_to_check_index + 1
             child_2_index = 2 * node_to_check_index + 2
 
+            # Inside while loop
             # if child_1_index == length - 1:
             #     # print()
             #     if node_to_check > da[child_1_index]:
             #         print("Woof")
             #         da[node_to_check_index] = da[child_1_index]
             #         da[child_1_index] = node_to_check
-            
-        if child_1_index == length - 1:
-            # print()
-            if node_to_check > da[child_1_index]:
-                print("Woof")
-                da[node_to_check_index] = da[child_1_index]
-                da[child_1_index] = node_to_check
+
+        # Outside of while loop
+        # if child_1_index == length - 1:
+        #     # print()
+        #     if node_to_check > da[child_1_index]:
+        #         print("Woof")
+        #         da[node_to_check_index] = da[child_1_index]
+        #         da[child_1_index] = node_to_check
+
+        
+        # print()
+        if node_to_check > da[child_1_index]:
+            print("Woof")
+            da[node_to_check_index] = da[child_1_index]
+            da[child_1_index] = node_to_check
 
 # def _percolate_down(da: DynamicArray, parent: int) -> None:
 #     """
