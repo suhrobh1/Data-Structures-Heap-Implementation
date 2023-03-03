@@ -77,9 +77,9 @@ class MinHeap:
         TODO: Write this implementation
         """
         if self._heap.length():
-            return True
-        else:
             return False
+        else:
+            return True
 
     def get_min(self) -> object:
         """
