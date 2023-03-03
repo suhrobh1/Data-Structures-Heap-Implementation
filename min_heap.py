@@ -100,7 +100,7 @@ class MinHeap:
         return_value = self._heap[0]
 
         if self._heap.is_empty():
-            return MinHeapException
+            MinHeapException
         elif self._heap.length() == 1:
             self._heap.remove_at_index(0)
             return return_value
