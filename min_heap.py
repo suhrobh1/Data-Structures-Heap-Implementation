@@ -70,8 +70,6 @@ class MinHeap:
                 parent = self._heap[parent_index]
         
 
-      
-
     def is_empty(self) -> bool:
         """
         TODO: Write this implementation
@@ -81,11 +79,20 @@ class MinHeap:
         else:
             return True
 
+
     def get_min(self) -> object:
         """
         TODO: Write this implementation
         """
-        pass
+        
+        if self._heap.length():
+            print(self._heap[0])
+        else:
+            return MinHeapException
+             
+
+
+
 
     def remove_min(self) -> object:
         """
