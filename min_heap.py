@@ -86,9 +86,9 @@ class MinHeap:
         """
         
         if self._heap.length():
-            print(self._heap[0])
+            return self._heap[0]
         else:
-            return MinHeapException
+            raise MinHeapException
              
 
 
