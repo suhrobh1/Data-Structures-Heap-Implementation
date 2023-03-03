@@ -138,7 +138,7 @@ class MinHeap:
             else:
                 self._heap.append(da[i])
 
-        print("The heap", self._heap)
+        # print("The heap", self._heap)
 
         if self._heap.length() == 2:
             if self._heap[0] > self._heap[1]:
@@ -172,11 +172,11 @@ class MinHeap:
                 # temp = self._heap[node_to_check_index]
                 self._heap[node_to_check_index] = self._heap[smaller_child_index]
                 self._heap[smaller_child_index] = node_to_check
-                print("booome---------")
+                # print("booome---------")
 
             node_to_check_index = node_to_check_index - 1
 
-            print("node to check index", node_to_check_index)
+            # print("node to check index", node_to_check_index)
 
     def size(self) -> int:
         """
@@ -328,11 +328,23 @@ if __name__ == '__main__':
 
     print("\nPDF - build_heap example 1")
     print("--------------------------")
+    da = DynamicArray([-94727, -93710, -12193, -63525, -12172, 51534, 53483, 39678, -8804])
+    h = MinHeap(['zebra', 'apple'])
+    print(h)
+    h.build_heap(da)
+    print(h)
+
+
+    
+
+    print("\nPDF - build_heap example 1")
+    print("--------------------------")
     da = DynamicArray([100, 20, 6, 200, 90, 150, 300])
     h = MinHeap(['zebra', 'apple'])
     print(h)
     h.build_heap(da)
     print(h)
+
 
     # print("--------------------------")
     # print("Inserting 500 into input DA:")
