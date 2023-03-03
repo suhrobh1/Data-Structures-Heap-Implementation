@@ -189,7 +189,7 @@ def _percolate_down(da: DynamicArray, node_to_check_index: int) -> None:
                 # print()
                 if node_to_check > da[child_1_index]:
                     print("Woof")
-                    # temp = node_to_check
+                    temp = node_to_check
                     # da[node_to_check_index] = da[child_1_index]
                     # da[child_1_index] = temp
 
