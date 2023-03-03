@@ -71,13 +71,14 @@ class MinHeap:
         
 
     def is_empty(self) -> bool:
-        """
-        TODO: Write this implementation
-        """
-        if self._heap.length():
-            return False
-        else:
-            return True
+        pass
+        # """
+        # TODO: Write this implementation
+        # """
+        # if self._heap.length():
+        #     return False
+        # else:
+        #     return True
 
 
     def get_min(self) -> object:
@@ -120,7 +121,7 @@ class MinHeap:
         TODO: Write this implementation
         """
         
-        self._heap = []
+        self._heap = DynamicArray()
        
 
 
