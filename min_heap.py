@@ -164,11 +164,13 @@ def _percolate_down(da: DynamicArray, node_to_check_index: int) -> None:
         child_1 = da[child_1_index]
         child_2 = da[child_2_index]
 
+        # determining smaller of the children
         if child_1 == child_2:
             smaller_child = child_2
         else:
             smaller_child = min(child_1, child_2)
 
+        # getting the index of the smaller child
         if smaller_child == child_1:
             smaller_child_index = child_1_index
         else:
@@ -184,14 +186,19 @@ def _percolate_down(da: DynamicArray, node_to_check_index: int) -> None:
             child_1_index = 2 * node_to_check_index + 1
             child_2_index = 2 * node_to_check_index + 2
 
-            if child_1_index == length - 1:
-
-                # print()
-                if node_to_check > da[child_1_index]:
-                    print("Woof")
-                    da[node_to_check_index] = da[child_1_index]
-                    da[child_1_index] = node_to_check
-
+            # if child_1_index == length - 1:
+            #     # print()
+            #     if node_to_check > da[child_1_index]:
+            #         print("Woof")
+            #         da[node_to_check_index] = da[child_1_index]
+            #         da[child_1_index] = node_to_check
+            
+        if child_1_index == length - 1:
+            # print()
+            if node_to_check > da[child_1_index]:
+                print("Woof")
+                da[node_to_check_index] = da[child_1_index]
+                da[child_1_index] = node_to_check
 
 # def _percolate_down(da: DynamicArray, parent: int) -> None:
 #     """
