@@ -110,13 +110,16 @@ class MinHeap:
         """
         TODO: Write this implementation
         """
-        pass
+        if self._heap.length():
+            return self._heap.length()
+        else:
+            return 0
 
     def clear(self) -> None:
         """
         TODO: Write this implementation
         """
-        pass
+        self._heap = None
 
 
 def heapsort(da: DynamicArray) -> None:
