@@ -119,7 +119,25 @@ class MinHeap:
         """
         TODO: Write this implementation
         """
-        pass
+        if self._heap.is_empty():
+            raise MinHeapException
+
+        
+        if self._heap.length() == 2:
+            if self._heap[0] > self._heap[1]:
+                self._heap[0], self._heap[1] =  self._heap[1], self._heap[0]
+                return
+             
+        
+        
+        first_index = (self._heap.length()//2) - 1
+        print(first_index)
+
+
+
+
+
+        
 
     def size(self) -> int:
         """
