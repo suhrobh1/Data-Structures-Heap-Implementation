@@ -111,42 +111,7 @@ class MinHeap:
                 self._heap[1] = temp
                 return return_value
 
-        node_to_check_index = 0
-        node_to_check = self._heap[node_to_check_index]
-        child_1_index = 2 * node_to_check_index + 1
-        child_2_index = 2 * node_to_check_index + 2
-
-        while child_1_index < self._heap.length(
-        ) and child_2_index < self._heap.length():
-            child_1 = self._heap[child_1_index]
-            child_2 = self._heap[child_2_index]
-
-            if child_1 == child_2:
-                smaller_child = child_2
-            else:
-                smaller_child = min(child_1, child_2)
-
-            if smaller_child == child_1:
-                smaller_child_index = child_1_index
-            else:
-                smaller_child_index = child_2_index
-
-            if node_to_check > smaller_child:
-                temp = self._heap[node_to_check_index]
-                self._heap[node_to_check_index] = smaller_child
-                self._heap[smaller_child_index] = temp
-
-                node_to_check_index = smaller_child_index
-                node_to_check = self._heap[node_to_check_index]
-                child_1_index = 2 * node_to_check_index + 1
-                child_2_index = 2 * node_to_check_index + 2
-
-                # if child_1_index == self._heap.length() - 1:
-                #     if node_to_check > self._heap[child_1_index]:
-                #         temp = node_to_check
-                #         self._heap[node_to_check_index] = self._heap[
-                #             child_1_index]
-                #         self._heap[child_1_index] = temp
+        _percolate_down(self._heap, 0)
 
         return return_value
 
@@ -185,12 +150,52 @@ def heapsort(da: DynamicArray) -> None:
 # this from inside the MinHeap class. You may edit the function definition.  #
 
 
-def _percolate_down(da: DynamicArray, parent: int) -> None:
+def _percolate_down(da: DynamicArray, node_to_check_index: int) -> None:
     """
-    TODO: Write your implementation
-    """
-    pass
+        TODO: Write your implementation
+        """
+    # node_to_check_index = parent
+    node_to_check = da[node_to_check_index]
+    child_1_index = 2 * node_to_check_index + 1
+    child_2_index = 2 * node_to_check_index + 2
 
+    while child_2_index < da.length():
+        child_1 = da[child_1_index]
+        child_2 = da[child_2_index]
+
+        if child_1 == child_2:
+            smaller_child = child_2
+        else:
+            smaller_child = min(child_1, child_2)
+
+        if smaller_child == child_1:
+            smaller_child_index = child_1_index
+        else:
+            smaller_child_index = child_2_index
+
+        if node_to_check > smaller_child:
+            temp = da[node_to_check_index]
+            da[node_to_check_index] = smaller_child
+            da[smaller_child_index] = temp
+
+            node_to_check_index = smaller_child_index
+            node_to_check = da[node_to_check_index]
+            child_1_index = 2 * node_to_check_index + 1
+            child_2_index = 2 * node_to_check_index + 2
+
+            if child_1_index == da.length() - 1:
+                # print()
+                if node_to_check > da[child_1_index]:
+                    temp = node_to_check
+                    da[node_to_check_index] = da[child_1_index]
+                    da[child_1_index] = temp
+
+
+# def _percolate_down(da: DynamicArray, parent: int) -> None:
+#     """
+#     TODO: Write your implementation
+#     """
+#     pass
 
 # ------------------- BASIC TESTING -----------------------------------------
 
@@ -230,8 +235,14 @@ if __name__ == '__main__':
 
     print("\nPDF - remove_min example 1")
     print("--------------------------")
-    h = MinHeap(['NoMYY', 'QHDqUDE', 'kQ', 'Rh_ESJQK', 'fkxT'])
+    h = MinHeap([-7284, 5470, 82852, 82852, 88135])
+    print(h, end=' ')
+    print(h.remove_min())
+    print(h, end=' ')
 
+    print("\nPDF - remove_min example 1")
+    print("--------------------------")
+    h = MinHeap(['NoMYY', 'QHDqUDE', 'kQ', 'Rh_ESJQK', 'fkxT'])
     print(h, end=' ')
     print(h.remove_min())
     print(h, end=' ')
