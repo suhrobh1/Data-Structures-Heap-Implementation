@@ -133,14 +133,20 @@ class MinHeap:
         while child_1_index < self._heap.length() and child_2_index < self._heap.length():
             child_1 = self._heap[child_1_index]
             child_2 = self._heap[child_2_index]
-            smaller_child = min(child_1, child_2)
+
+            if child_1 > child_2:
+                smaller_child = child_2
+            elif child_1 < child_2:
+                smaller_child = child_1
+            else:
+                smaller_child = child_2
 
             if smaller_child == child_1:
                 smaller_child_index = child_1_index
             else:
                 smaller_child_index = child_2_index
 
-             # remembert to change : if both children are equal   
+             
 
             if node_to_check > smaller_child:
                 temp = self._heap[node_to_check_index]
