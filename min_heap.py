@@ -119,7 +119,9 @@ class MinHeap:
         """
         TODO: Write this implementation
         """
-        self._heap = None
+        
+        self._heap = []
+       
 
 
 def heapsort(da: DynamicArray) -> None:
