@@ -97,11 +97,14 @@ class MinHeap:
         TODO: Write this implementation
         """
 
+        if self._heap.is_empty():
+            raise MinHeapException
+        
+        
         return_value = self._heap[0]
 
-        if self._heap.is_empty():
-            MinHeapException
-        elif self._heap.length() == 1:
+
+        if self._heap.length() == 1:
             self._heap.remove_at_index(0)
             return return_value
        
@@ -154,14 +157,16 @@ class MinHeap:
 
 
 
-
-
-
     def build_heap(self, da: DynamicArray) -> None:
         """
         TODO: Write this implementation
         """
         pass
+
+
+
+
+
 
     def size(self) -> int:
         """
