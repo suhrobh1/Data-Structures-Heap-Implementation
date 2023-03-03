@@ -71,14 +71,13 @@ class MinHeap:
         
 
     def is_empty(self) -> bool:
-        pass
-        # """
-        # TODO: Write this implementation
-        # """
-        # if self._heap.length():
-        #     return False
-        # else:
-        #     return True
+        """
+        TODO: Write this implementation
+        """
+        if self._heap.length():
+            return False
+        else:
+            return True
 
 
     def get_min(self) -> object:
@@ -148,37 +147,37 @@ def _percolate_down(da: DynamicArray, parent: int) -> None:
 
 if __name__ == '__main__':
 
-    print("\nPDF - add example 1")
-    print("-------------------")
-    h = MinHeap()
-    print(h, h.is_empty())
-    for value in range(300, 200, -15):
-        h.add(value)
-        print(h)
+    # print("\nPDF - add example 1")
+    # print("-------------------")
+    # h = MinHeap()
+    # print(h, h.is_empty())
+    # for value in range(300, 200, -15):
+    #     h.add(value)
+    #     print(h)
 
-    print("\nPDF - add example 2")
-    print("-------------------")
-    h = MinHeap(['fish', 'bird'])
-    print(h)
-    for value in ['monkey', 'zebra', 'elephant', 'horse', 'bear']:
-        h.add(value)
-        print(h)
+    # print("\nPDF - add example 2")
+    # print("-------------------")
+    # h = MinHeap(['fish', 'bird'])
+    # print(h)
+    # for value in ['monkey', 'zebra', 'elephant', 'horse', 'bear']:
+    #     h.add(value)
+    #     print(h)
 
-    print("\nPDF - is_empty example 1")
-    print("-------------------")
-    h = MinHeap([2, 4, 12, 56, 8, 34, 67])
-    print(h.is_empty())
+    # print("\nPDF - is_empty example 1")
+    # print("-------------------")
+    # h = MinHeap([2, 4, 12, 56, 8, 34, 67])
+    # print(h.is_empty())
 
-    print("\nPDF - is_empty example 2")
-    print("-------------------")
-    h = MinHeap()
-    print(h.is_empty())
+    # print("\nPDF - is_empty example 2")
+    # print("-------------------")
+    # h = MinHeap()
+    # print(h.is_empty())
 
-    print("\nPDF - get_min example 1")
-    print("-----------------------")
-    h = MinHeap(['fish', 'bird'])
-    print(h)
-    print(h.get_min(), h.get_min())
+    # print("\nPDF - get_min example 1")
+    # print("-----------------------")
+    # h = MinHeap(['fish', 'bird'])
+    # print(h)
+    # print(h.get_min(), h.get_min())
 
     print("\nPDF - remove_min example 1")
     print("--------------------------")
@@ -219,19 +218,19 @@ if __name__ == '__main__':
     heapsort(da)
     print(f"After:  {da}")
 
-    print("\nPDF - size example 1")
-    print("--------------------")
-    h = MinHeap([100, 20, 6, 200, 90, 150, 300])
-    print(h.size())
+    # print("\nPDF - size example 1")
+    # print("--------------------")
+    # h = MinHeap([100, 20, 6, 200, 90, 150, 300])
+    # print(h.size())
 
-    print("\nPDF - size example 2")
-    print("--------------------")
-    h = MinHeap([])
-    print(h.size())
+    # print("\nPDF - size example 2")
+    # print("--------------------")
+    # h = MinHeap([])
+    # print(h.size())
 
-    print("\nPDF - clear example 1")
-    print("---------------------")
-    h = MinHeap(['monkey', 'zebra', 'elephant', 'horse', 'bear'])
-    print(h)
-    print(h.clear())
-    print(h)
+    # print("\nPDF - clear example 1")
+    # print("---------------------")
+    # h = MinHeap(['monkey', 'zebra', 'elephant', 'horse', 'bear'])
+    # print(h)
+    # print(h.clear())
+    # print(h)
