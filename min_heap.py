@@ -239,7 +239,7 @@ def _percolate_down(da: DynamicArray, node_to_check_index: int) -> None:
         child_2_index = 2 * node_to_check_index + 2
 
         if child_2_index < da.length() and da[child_2_index] < da[node_to_check_index]:
-            if da[child_2_index] <= da[child_1_index]:
+            if da[child_2_index] < da[child_1_index]:
                 child = child_2_index
             else:
                 child = child_1_index
