@@ -104,14 +104,6 @@ class MinHeap:
         self._heap[0] = self._heap[self._heap.length() - 1]
         # Deleting the last element
         self._heap.remove_at_index(self._heap.length() - 1)
-
-
-        # if self._heap.length() == 2:
-        #     if self._heap[0] > self._heap[1]:
-        #         temp = self._heap[0]
-        #         self._heap[0] = self._heap[1]
-        #         self._heap[1] = temp
-        #         return return_value
             
         _percolate_down(self._heap, 0)
 
@@ -236,9 +228,9 @@ def _percolate_down(da: DynamicArray, node_to_check_index: int) -> None:
             child_2_index = 2 * node_to_check_index + 2
 
         #If left child index is equal to the last index
-    if child_1_index == da.length() - 1:
-        if da[node_to_check_index] > da[child_1_index]:
-            da[node_to_check_index], da[child_1_index] = da[child_1_index], da[node_to_check_index]
+    # if child_1_index == da.length() - 1:
+    #     if da[node_to_check_index] > da[child_1_index]:
+    #         da[node_to_check_index], da[child_1_index] = da[child_1_index], da[node_to_check_index]
                 
 
 
