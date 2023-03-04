@@ -215,11 +215,12 @@ def _percolate_down(da: DynamicArray, node_to_check_index: int) -> None:
     """
         TODO: Write your implementation
         """
-    child= None
-    child_1_index = 2 * node_to_check_index + 1
-    child_2_index = 2 * node_to_check_index + 2
+    
+    # child_1_index = 2 * node_to_check_index + 1
+    # child_2_index = 2 * node_to_check_index + 2
 
     while 0 <=node_to_check_index<da.length():
+        child= None
         child_1_index = 2 * node_to_check_index + 1
         child_2_index = 2 * node_to_check_index + 2
 
