@@ -95,12 +95,14 @@ class MinHeap:
 
         return_value = self._heap[0]
 
+        # If heap has one element
         if self._heap.length() == 1:
             self._heap.remove_at_index(0)
             return return_value
 
-        # last is now first
+        # Last element value is now first
         self._heap[0] = self._heap[self._heap.length() - 1]
+        # Deleting the last element
         self._heap.remove_at_index(self._heap.length() - 1)
     
         if self._heap.length() == 2:
@@ -109,23 +111,15 @@ class MinHeap:
                 self._heap[0] = self._heap[1]
                 self._heap[1] = temp
                 return return_value
-
         _percolate_down(self._heap, 0)
-
         return return_value
+    
+
 
     def build_heap(self, da: DynamicArray) -> None:
         """
         TODO: Write this implementation
         """
-
-        # print("Printing DA------------------", da)
-
-        # Create new Dynamic Array
-        # Copy over the values that are in the provided dynamic array
-        # Heap process on values in the new array
-        # Set the new array to be self._heap
-        # print("da length: ", da.length())
         heap_length = self._heap.length()
         counter = 0
         # print(heap_length)
@@ -137,21 +131,20 @@ class MinHeap:
             else:
                 self._heap.append(da[i])
 
-        # print("The heap", self._heap)
-
+        # If the two elems in heap
         if self._heap.length() == 2:
             if self._heap[0] > self._heap[1]:
                 self._heap[0], self._heap[1] = self._heap[1], self._heap[0]
                 return
 
         node_to_check_index = (self._heap.length() // 2) - 1
-        # This is what we will pass to heapify
-
         while node_to_check_index >= 0:
             # establishing variables
             node_to_check = self._heap[node_to_check_index]
             child_1_index = 2 * node_to_check_index + 1
             child_2_index = 2 * node_to_check_index + 2
+
+            # If second childs index is beyond array length
             if child_2_index >= self._heap.length():
                 smaller_child = self._heap[child_1_index]
                 smaller_child_index = child_1_index
@@ -173,11 +166,10 @@ class MinHeap:
 
             # Swap node with smaller child if node is greater than child
             if node_to_check > smaller_child:
-                # temp = self._heap[node_to_check_index]
                 self._heap[node_to_check_index] = self._heap[smaller_child_index]
                 self._heap[smaller_child_index] = node_to_check
-                # print("booome---------")
-
+               
+            # Incrementing the index to the next node we want to evaluate
             node_to_check_index = node_to_check_index - 1
 
             # print("node to check index", node_to_check_index)
@@ -215,12 +207,10 @@ def _percolate_down(da: DynamicArray, node_to_check_index: int) -> None:
     """
         TODO: Write your implementation
         """
-    length = da.length()
-    
     child_1_index = 2 * node_to_check_index + 1
     child_2_index = 2 * node_to_check_index + 2
 
-    while child_2_index < length:
+    while child_1_index < da.length() -1:
         # determining smaller of the children
         if da[child_1_index] >= da[child_2_index]:
             smaller_child_index = child_2_index
@@ -243,9 +233,9 @@ def _percolate_down(da: DynamicArray, node_to_check_index: int) -> None:
             child_2_index = 2 * node_to_check_index + 2
 
         # If left child index is equal to the last index
-        if child_1_index == length - 1:
-            if da[node_to_check_index] > da[child_1_index]:
-                da[node_to_check_index], da[child_1_index] = da[child_1_index], da[node_to_check_index]
+    # if child_1_index == da.length() - 1:
+    #     if da[node_to_check_index] > da[child_1_index]:
+    #         da[node_to_check_index], da[child_1_index] = da[child_1_index], da[node_to_check_index]
                 
 
 
