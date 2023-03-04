@@ -216,48 +216,37 @@ def _percolate_down(da: DynamicArray, node_to_check_index: int) -> None:
         TODO: Write your implementation
         """
     length = da.length()
-    node_to_check = da[node_to_check_index]
+    
     child_1_index = 2 * node_to_check_index + 1
     child_2_index = 2 * node_to_check_index + 2
 
     while child_2_index < length:
-        child_1 = da[child_1_index]
-        child_2 = da[child_2_index]
-
         # determining smaller of the children
-        if da[child_1_index] == da[child_2_index]:
-            smaller_child = da[child_2_index]
+        if da[child_1_index] >= da[child_2_index]:
+            smaller_child_index = child_2_index
         elif da[child_1_index] < da[child_2_index] :
-            smaller_child = da[child_1_index]
-        else:
-            smaller_child = da[child_2_index]
+            smaller_child_index = child_1_index
 
-        # getting the index of the smaller child
-        if smaller_child == child_1:
+        # # getting the index of the smaller child
+        if da[smaller_child_index] == da[child_1_index]:
             smaller_child_index = child_1_index
         else:
             smaller_child_index = child_2_index
 
-        if node_to_check > smaller_child:
-            # temp = da[node_to_check_index]
-            # da[node_to_check_index] = smaller_child
-            # da[smaller_child_index] = temp
-
+        # If parent/nodetobe checked is higher than smaller of children
+        if da[node_to_check_index] > da[smaller_child_index]:
             da[node_to_check_index], da[smaller_child_index] = da[
                 smaller_child_index], da[node_to_check_index]
 
             node_to_check_index = smaller_child_index
-            node_to_check = da[node_to_check_index]
             child_1_index = 2 * node_to_check_index + 1
             child_2_index = 2 * node_to_check_index + 2
 
-
+        # If left child index is equal to the last index
         if child_1_index == length - 1:
-            # print()
-            if node_to_check > da[child_1_index]:
-                print("Woof")
-                da[node_to_check_index] = da[child_1_index]
-                da[child_1_index] = node_to_check
+            if da[node_to_check_index] > da[child_1_index]:
+                da[node_to_check_index], da[child_1_index] = da[child_1_index], da[node_to_check_index]
+                
 
 
 
@@ -320,79 +309,6 @@ def _percolate_down(da: DynamicArray, node_to_check_index: int) -> None:
 #                 da[node_to_check_index] = da[child_1_index]
 #                 da[child_1_index] = node_to_check
 
-
-
-
-
-
-
-# def _percolate_down(da: DynamicArray, node_to_check_index: int) -> None:
-#     """
-#         TODO: Write your implementation
-#         """
-#     length = da.length()
-#     node_to_check = da[node_to_check_index]
-#     child_1_index = 2 * node_to_check_index + 1
-#     child_2_index = 2 * node_to_check_index + 2
-
-#     while child_2_index < length:
-#         child_1 = da[child_1_index]
-#         child_2 = da[child_2_index]
-
-#         if da[node_to_check_index] > da[child_1_index] or da[node_to_check_index] > da[child_2_index]:
-#             if da[child_1_index] < da[child_2_index]:
-#                 da[node_to_check_index], da[child_1_index] = da[child_1_index], da[node_to_check_index] 
-#                 node_to_check_index = child_1_index
-#                 child_1_index = 2 * node_to_check_index + 1
-#                 child_2_index = 2 * node_to_check_index + 2
-#             else:
-#                 da[node_to_check_index], da[child_2_index] = da[child_2_index], da[node_to_check_index] 
-#                 node_to_check_index = child_2_index
-#                 child_1_index = 2 * node_to_check_index + 1
-#                 child_2_index = 2 * node_to_check_index + 2
-    
-#         if child_1_index == length - 1:
-#             # print()
-#             if node_to_check > da[child_1_index]:
-#                 print("Woof")
-#                 da[node_to_check_index] = da[child_1_index]
-#                 da[child_1_index] = node_to_check
-
-
-        # # determining smaller of the children
-        # if child_1 == child_2:
-        #     smaller_child = child_2
-        # else:
-        #     smaller_child = min(child_1, child_2)
-
-        # # getting the index of the smaller child
-        # if smaller_child == child_1:
-        #     smaller_child_index = child_1_index
-        # else:
-        #     smaller_child_index = child_2_index
-
-        # if node_to_check > smaller_child:
-        #     # temp = da[node_to_check_index]
-        #     # da[node_to_check_index] = smaller_child
-        #     # da[smaller_child_index] = temp
-
-        #     da[node_to_check_index], da[smaller_child_index] = da[
-        #         smaller_child_index], da[node_to_check_index]
-
-        #     node_to_check_index = smaller_child_index
-        #     node_to_check = da[node_to_check_index]
-        #     child_1_index = 2 * node_to_check_index + 1
-        #     child_2_index = 2 * node_to_check_index + 2
-
-        #     # Inside while loop
-        #     # if child_1_index == length - 1:
-        #     #     # print()
-        #     #     if node_to_check > da[child_1_index]:
-        #     #         print("Woof")
-        #     #         da[node_to_check_index] = da[child_1_index]
-        #     #         da[child_1_index] = node_to_check
-
-        # # Outside of while loop
 
 
 # ------------------- BASIC TESTING -----------------------------------------
