@@ -201,42 +201,68 @@ def heapsort(da: DynamicArray) -> None:
     """
     TODO: Write this implementation
     """
-    pass
+    node_to_check_index = da.length() -1
+    
 
-
+    while node_to_check_index > 0:
+        print(da[node_to_check_index])
+        da[node_to_check_index], da[0] = da[0], da[node_to_check_index]
+        _percolate_down(da.slice(0,node_to_check_index), 0 )
+        node_to_check_index -= 1   
 
 
 def _percolate_down(da: DynamicArray, node_to_check_index: int) -> None:
     """
         TODO: Write your implementation
         """
+    child= None
     child_1_index = 2 * node_to_check_index + 1
     child_2_index = 2 * node_to_check_index + 2
 
-    while child_1_index < da.length() -1:
-        # determining smaller of the children
-        if da[child_1_index] >= da[child_2_index]:
-            smaller_child_index = child_2_index
-        elif da[child_1_index] < da[child_2_index] :
-            smaller_child_index = child_1_index
+    while 0 <=node_to_check_index<da.length():
+        child_1_index = 2 * node_to_check_index + 1
+        child_2_index = 2 * node_to_check_index + 2
 
-        # # getting the index of the smaller child
-        if da[smaller_child_index] == da[child_1_index]:
-            smaller_child_index = child_1_index
+        if child_2_index < da.length() and da[child_2_index] < da[node_to_check_index]:
+            child = child_2_index
+        elif child_1_index < da.length() and da[child_1_index] < da[node_to_check_index]:
+            child = child_1_index
+
+        if child is None:
+            return
         else:
-            smaller_child_index = child_2_index
+            da[node_to_check_index], da[child] = da[child], da[node_to_check_index]
+            node_to_check_index = child
+
+
+
+
+
+
+    # while child_1_index < da.length() -1:
+    #     # determining smaller of the children
+    #     if da[child_1_index] >= da[child_2_index]:
+    #         smaller_child_index = child_2_index
+    #     elif da[child_1_index] < da[child_2_index] :
+    #         smaller_child_index = child_1_index
+
+    #     # # getting the index of the smaller child
+    #     if da[smaller_child_index] == da[child_1_index]:
+    #         smaller_child_index = child_1_index
+    #     else:
+    #         smaller_child_index = child_2_index
 
        
-        # If parent/nodetobe checked is higher than smaller of children
-        if da[node_to_check_index] > da[smaller_child_index]:
-            da[node_to_check_index], da[smaller_child_index] = da[
-                smaller_child_index], da[node_to_check_index]
+    #     # If parent/nodetobe checked is higher than smaller of children
+    #     if da[node_to_check_index] > da[smaller_child_index]:
+    #         da[node_to_check_index], da[smaller_child_index] = da[
+    #             smaller_child_index], da[node_to_check_index]
 
-            node_to_check_index = smaller_child_index
-            child_1_index = 2 * node_to_check_index + 1
-            child_2_index = 2 * node_to_check_index + 2
+    #         node_to_check_index = smaller_child_index
+    #         child_1_index = 2 * node_to_check_index + 1
+    #         child_2_index = 2 * node_to_check_index + 2
 
-    #     If left child index is equal to the last index
+    #     #If left child index is equal to the last index
     # if child_1_index == da.length() - 1:
     #     if da[node_to_check_index] > da[child_1_index]:
     #         da[node_to_check_index], da[child_1_index] = da[child_1_index], da[node_to_check_index]
@@ -373,41 +399,41 @@ if __name__ == '__main__':
         print(h, end=' ')
         print(h.remove_min())
 
-    print("\nPDF - build_heap example 1")
-    print("-------------------------")
-    da = DynamicArray([6567, 272, 3208, 42182, 76924, -24347, -87739, 43710, 76205])
-    h = MinHeap([])
-    correct = DynamicArray([-87739, 272, -24347, 42182, 76924, 6567, 3208, 43710, 76205])
+    # print("\nPDF - build_heap example 1")
+    # print("-------------------------")
+    # da = DynamicArray([6567, 272, 3208, 42182, 76924, -24347, -87739, 43710, 76205])
+    # h = MinHeap([])
+    # correct = DynamicArray([-87739, 272, -24347, 42182, 76924, 6567, 3208, 43710, 76205])
     
-    # print(h)
+    # # print(h)
    
-    h.build_heap(da)
-    print("------------------", h)
-    print(correct)
+    # h.build_heap(da)
+    # print("------------------", h)
+    # print(correct)
 
 
 
-    print("\nPDF - build_heap example 1")
-    print("--------------------------")
-    da = DynamicArray([46293, -62393, 38037, -36087, 33218, -15177, -3375, 25071, -85085, -59109])
-    h = MinHeap([])
-    correct = DynamicArray([-85085, 46293, -15177, -62393, -59109, 38037, -3375, 25071, -36087, 33218])
+    # print("\nPDF - build_heap example 1")
+    # print("--------------------------")
+    # da = DynamicArray([46293, -62393, 38037, -36087, 33218, -15177, -3375, 25071, -85085, -59109])
+    # h = MinHeap([])
+    # correct = DynamicArray([-85085, 46293, -15177, -62393, -59109, 38037, -3375, 25071, -36087, 33218])
     
-    # print(h)
+    # # print(h)
    
-    h.build_heap(da)
-    print("------------------", h)
-    print(correct)
+    # h.build_heap(da)
+    # print("------------------", h)
+    # print(correct)
 
     
 
-    print("\nPDF - build_heap example 1")
-    print("--------------------------")
-    da = DynamicArray([100, 20, 6, 200, 90, 150, 300])
-    h = MinHeap(['zebra', 'apple'])
-    print(h)
-    h.build_heap(da)
-    print(h)
+    # print("\nPDF - build_heap example 1")
+    # print("--------------------------")
+    # da = DynamicArray([100, 20, 6, 200, 90, 150, 300])
+    # h = MinHeap(['zebra', 'apple'])
+    # print(h)
+    # h.build_heap(da)
+    # print(h)
 
 
     # print("--------------------------")
