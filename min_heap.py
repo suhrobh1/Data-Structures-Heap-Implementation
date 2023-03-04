@@ -228,6 +228,7 @@ def heapsort(da: DynamicArray) -> None:
         node_to_check_index -= 1   
 
 
+
 def _percolate_down(da: DynamicArray, node_to_check_index: int) -> None:
     """
         TODO: Write your implementation
