@@ -134,18 +134,9 @@ class MinHeap:
         # Heap process on values in the new array
         # Set the new array to be self._heap
         # print("da length: ", da.length())
-        heap_length = self._heap.length()
-        counter = 0
-        # print(heap_length)
+        self._heap = DynamicArray()
         for i in range(0, da.length()):
-            # print("i", i)
-            if counter < heap_length:
-                self._heap[i] = da[i]
-                counter += 1
-            else:
-                self._heap.append(da[i])
-
-        # print("The heap", self._heap)
+             self._heap.append(da[i])
 
         if self._heap.length() == 2:
             if self._heap[0] > self._heap[1]:
@@ -207,10 +198,7 @@ class MinHeap:
         """
         TODO: Write this implementation
         """
-
         self._heap = DynamicArray()
-    def swap(self, pos1, pos2):
-        self._heap[pos1], self._heap[pos2] = self._heap[pos2], self._heap[pos1]
     
   
 
@@ -224,8 +212,10 @@ def heapsort(da: DynamicArray) -> None:
     while node_to_check_index > 0:
         print(da[node_to_check_index])
         da[node_to_check_index], da[0] = da[0], da[node_to_check_index]
-        _percolate_down(da.slice(0, node_to_check_index), 0 )
-        node_to_check_index -= 1   
+        slice_end = node_to_check_index + 1
+        _percolate_down(da.slice(0, slice_end), 0 )
+
+        node_to_check_index -= 1  
 
 
 
