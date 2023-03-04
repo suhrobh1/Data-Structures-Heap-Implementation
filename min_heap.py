@@ -120,7 +120,7 @@ class MinHeap:
         TODO: Write this implementation
         """
 
-        print("Printing DA------------------", da)
+        # print("Printing DA------------------", da)
 
         # Create new Dynamic Array
         # Copy over the values that are in the provided dynamic array
@@ -152,20 +152,24 @@ class MinHeap:
             node_to_check = self._heap[node_to_check_index]
             child_1_index = 2 * node_to_check_index + 1
             child_2_index = 2 * node_to_check_index + 2
-            child_1 = self._heap[child_1_index]
-            child_2 = self._heap[child_2_index]
-
-            # determining smaller of the children
-            if child_1 == child_2:
-                smaller_child = child_2
-            else:
-                smaller_child = min(child_1, child_2)
-
-            # getting the index of the smaller child
-            if smaller_child == child_1:
+            if child_2_index >= self._heap.length():
+                smaller_child = self._heap[child_1_index]
                 smaller_child_index = child_1_index
             else:
-                smaller_child_index = child_2_index
+                child_1 = self._heap[child_1_index]
+                child_2 = self._heap[child_2_index]
+
+            # determining smaller of the children
+                if child_1 == child_2:
+                    smaller_child = child_2
+                else:
+                    smaller_child = min(child_1, child_2)
+
+            # getting the index of the smaller child
+                if smaller_child == child_1:
+                    smaller_child_index = child_1_index
+                else:
+                    smaller_child_index = child_2_index
 
             # Swap node with smaller child if node is greater than child
             if node_to_check > smaller_child:
@@ -328,22 +332,25 @@ if __name__ == '__main__':
 
     print("\nPDF - build_heap example 1")
     print("--------------------------")
-    da = DynamicArray([-94727, -93710, -12193, -63525, -12172, 51534, 53483, 39678, -8804])
-    h = MinHeap(['zebra', 'apple'])
-    print(h)
+    da = DynamicArray([46293, -62393, 38037, -36087, 33218, -15177, -3375, 25071, -85085, -59109])
+    h = MinHeap([])
+    correct = DynamicArray([-85085, -62393, -15177, -36087, -59109, 38037, -3375, 25071, 46293, 33218])
+    
+    # print(h)
+   
     h.build_heap(da)
     print(h)
-
+    print(correct)
 
     
 
-    print("\nPDF - build_heap example 1")
-    print("--------------------------")
-    da = DynamicArray([100, 20, 6, 200, 90, 150, 300])
-    h = MinHeap(['zebra', 'apple'])
-    print(h)
-    h.build_heap(da)
-    print(h)
+    # print("\nPDF - build_heap example 1")
+    # print("--------------------------")
+    # da = DynamicArray([100, 20, 6, 200, 90, 150, 300])
+    # h = MinHeap(['zebra', 'apple'])
+    # print(h)
+    # h.build_heap(da)
+    # print(h)
 
 
     # print("--------------------------")
