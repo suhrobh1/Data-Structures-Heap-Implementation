@@ -155,40 +155,43 @@ class MinHeap:
         node_to_check_index = (self._heap.length() // 2) - 1
         # This is what we will pass to heapify
 
+        
         while node_to_check_index >= 0:
-            # establishing variables
-            node_to_check = self._heap[node_to_check_index]
-            child_1_index = 2 * node_to_check_index + 1
-            child_2_index = 2 * node_to_check_index + 2
-            if child_2_index >= self._heap.length():
-                smaller_child = self._heap[child_1_index]
-                smaller_child_index = child_1_index
-            else:
-                child_1 = self._heap[child_1_index]
-                child_2 = self._heap[child_2_index]
-
-            # determining smaller of the children
-                if child_1 == child_2:
-                    smaller_child = child_2
-                else:
-                    smaller_child = min(child_1, child_2)
-
-            # getting the index of the smaller child
-                if smaller_child == child_1:
-                    smaller_child_index = child_1_index
-                else:
-                    smaller_child_index = child_2_index
-
-            # Swap node with smaller child if node is greater than child
-            if node_to_check > smaller_child:
-                # temp = self._heap[node_to_check_index]
-                self._heap[node_to_check_index] = self._heap[smaller_child_index]
-                self._heap[smaller_child_index] = node_to_check
-                # print("booome---------")
-
+            _percolate_down(self._heap, node_to_check_index)
             node_to_check_index = node_to_check_index - 1
+        #     # establishing variables
+        #     node_to_check = self._heap[node_to_check_index]
+        #     child_1_index = 2 * node_to_check_index + 1
+        #     child_2_index = 2 * node_to_check_index + 2
+        #     if child_2_index >= self._heap.length():
+        #         smaller_child = self._heap[child_1_index]
+        #         smaller_child_index = child_1_index
+        #     else:
+        #         child_1 = self._heap[child_1_index]
+        #         child_2 = self._heap[child_2_index]
 
-            # print("node to check index", node_to_check_index)
+        #     # determining smaller of the children
+        #         if child_1 == child_2:
+        #             smaller_child = child_2
+        #         else:
+        #             smaller_child = min(child_1, child_2)
+
+        #     # getting the index of the smaller child
+        #         if smaller_child == child_1:
+        #             smaller_child_index = child_1_index
+        #         else:
+        #             smaller_child_index = child_2_index
+
+        #     # Swap node with smaller child if node is greater than child
+        #     if node_to_check > smaller_child:
+        #         # temp = self._heap[node_to_check_index]
+        #         self._heap[node_to_check_index] = self._heap[smaller_child_index]
+        #         self._heap[smaller_child_index] = node_to_check
+        #         # print("booome---------")
+
+        #     node_to_check_index = node_to_check_index - 1
+
+        #     # print("node to check index", node_to_check_index)
 
     def size(self) -> int:
         """
