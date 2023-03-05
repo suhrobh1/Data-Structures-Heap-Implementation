@@ -175,7 +175,7 @@ def heapsort(da: DynamicArray) -> None:
     for i in range(n // 2 - 1, -1, -1): 
        _percolate_down(da, i)  
 
-    for i in range(n-1, 0, -1): 
+    for i in range(n-1, 0): 
         da[i], da[0] = da[0], da[i] 
         _percolate_down(da, 0)
 
