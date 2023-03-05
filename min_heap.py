@@ -168,58 +168,70 @@ def heapsort(da: DynamicArray) -> None:
     """
     TODO: Write this implementation
     """
-    node_to_check_index = da.length() -1
+#    node_to_check_index = da.length() -1
     
 
     n = da.length()
-    for i in range(n // 2 - 1, -1, -1): 
+    for i in range(n, - 1, -1): 
        _percolate_down(da, i)  
 
-    for i in range(n-1, 0): 
+    for i in range(n-1, 0, -1): 
         da[i], da[0] = da[0], da[i] 
+
         _percolate_down(da, 0)
-
-
-    i=0
-    size = da.length()
-    while(i<size//2):
- 
-    #swap present and preceding numbers at time and jump to second element after swap
-        da[i],da[size-i-1]=da[size-i-1],da[i]
-       
-    #skip if present and preceding numbers indexes are same
-        if((i!=i+1 and size-i-1 != size-i-2) and (i!=size-i-2 and size-i-1!=i+1)):
-            da[i+1],da[size-i-2]=da[size-i-2],da[i+1]
-        i+=2
-
     
-    # while node_to_check_index > 0:
-    #     print(da[node_to_check_index])
-    #     da[node_to_check_index], da[0] = da[0], da[node_to_check_index]
-    #     slice_end = node_to_check_index + 1
-    #     _percolate_down(da.slice(0, slice_end), 0 )
+    
 
+    # while node_to_check_index >= 0:
+
+    #     # print(da[node_to_check_index])
+    #     # da[node_to_check_index], da[0] = da[0], da[node_to_check_index]
+    #     slice_end = node_to_check_index + 1
+    #     sliced_da = da.slice(0, slice_end)
+    #     print(sliced_da)
+    #     # _percolate_down(da.slice(0, slice_end), 0 )
+        
     #     node_to_check_index -= 1  
 
+    # i=0
+    # size = da.length()
+    # while(i<size//2):
+ 
+    # #swap present and preceding numbers at time and jump to second element after swap
+    #     da[i],da[size-i-1]=da[size-i-1],da[i]
+       
+    # #skip if present and preceding numbers indexes are same
+    #     if((i!=i+1 and size-i-1 != size-i-2) and (i!=size-i-2 and size-i-1!=i+1)):
+    #         da[i+1],da[size-i-2]=da[size-i-2],da[i+1]
+    #     i+=2
+
+    
+   
 
 
-def _percolate_down(da: DynamicArray, node_to_check_index: int) -> None:
+
+def _percolate_down(da: DynamicArray, node_to_check_index: int, length=None) -> None:
     """
         TODO: Write your implementation
         """
+    if length is None:
+        da_length = da.length()
+    else:
+        da_length = length
 
-    while 0 <=node_to_check_index<da.length():
+
+    while 0 <=node_to_check_index<da_length:
         child= None
         child_1_index = 2 * node_to_check_index + 1
         child_2_index = 2 * node_to_check_index + 2
 
-        if child_2_index < da.length() and da[child_2_index] < da[node_to_check_index]:
+        if child_2_index < da_length and da[child_2_index] < da[node_to_check_index]:
             if da[child_2_index] < da[child_1_index]:
                 child = child_2_index
             else:
                 child = child_1_index
                 
-        elif child_1_index < da.length() and da[child_1_index] < da[node_to_check_index]:
+        elif child_1_index < da_length and da[child_1_index] < da[node_to_check_index]:
             child = child_1_index
 
         if child is None:
