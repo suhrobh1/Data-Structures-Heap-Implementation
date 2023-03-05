@@ -127,14 +127,8 @@ class MinHeap:
         TODO: Write this implementation
         """
 
-        # print("Printing DA------------------", da)
-
-        # Create new Dynamic Array
-        # Copy over the values that are in the provided dynamic array
-        # Heap process on values in the new array
-        # Set the new array to be self._heap
-        # print("da length: ", da.length())
         self._heap = DynamicArray()
+
         for i in range(0, da.length()):
              self._heap.append(da[i])
 
@@ -151,39 +145,7 @@ class MinHeap:
             _percolate_down(self._heap, node_to_check_index)
             node_to_check_index = node_to_check_index - 1
             
-        #     # establishing variables
-        #     node_to_check = self._heap[node_to_check_index]
-        #     child_1_index = 2 * node_to_check_index + 1
-        #     child_2_index = 2 * node_to_check_index + 2
-        #     if child_2_index >= self._heap.length():
-        #         smaller_child = self._heap[child_1_index]
-        #         smaller_child_index = child_1_index
-        #     else:
-        #         child_1 = self._heap[child_1_index]
-        #         child_2 = self._heap[child_2_index]
 
-        #     # determining smaller of the children
-        #         if child_1 == child_2:
-        #             smaller_child = child_2
-        #         else:
-        #             smaller_child = min(child_1, child_2)
-
-        #     # getting the index of the smaller child
-        #         if smaller_child == child_1:
-        #             smaller_child_index = child_1_index
-        #         else:
-        #             smaller_child_index = child_2_index
-
-        #     # Swap node with smaller child if node is greater than child
-        #     if node_to_check > smaller_child:
-        #         # temp = self._heap[node_to_check_index]
-        #         self._heap[node_to_check_index] = self._heap[smaller_child_index]
-        #         self._heap[smaller_child_index] = node_to_check
-        #         # print("booome---------")
-
-        #     node_to_check_index = node_to_check_index - 1
-
-        #     # print("node to check index", node_to_check_index)
 
     def size(self) -> int:
         """
@@ -209,13 +171,22 @@ def heapsort(da: DynamicArray) -> None:
     node_to_check_index = da.length() -1
     
 
-    while node_to_check_index > 0:
-        print(da[node_to_check_index])
-        da[node_to_check_index], da[0] = da[0], da[node_to_check_index]
-        slice_end = node_to_check_index + 1
-        _percolate_down(da.slice(0, slice_end), 0 )
+    n = da.length()
+    for i in range(n // 2 - 1, -1, -1): 
+       _percolate_down(da, i)  
+    for i in range(n-1, 0, -1): 
+        da[i], da[0] = da[0], da[i] 
+        _percolate_down(da, 0)
 
-        node_to_check_index -= 1  
+
+    
+    # while node_to_check_index > 0:
+    #     print(da[node_to_check_index])
+    #     da[node_to_check_index], da[0] = da[0], da[node_to_check_index]
+    #     slice_end = node_to_check_index + 1
+    #     _percolate_down(da.slice(0, slice_end), 0 )
+
+    #     node_to_check_index -= 1  
 
 
 
@@ -317,68 +288,68 @@ if __name__ == '__main__':
     #     print(h, end=' ')
     #     print(h.remove_min())
 
-    print("\nPDF - build_heap example 1")
-    print("-------------------------")
-    da = DynamicArray([6567, 272, 3208, 42182, 76924, -24347, -87739, 43710, 76205])
-    h = MinHeap([])
-    correct = DynamicArray([-87739, 272, -24347, 42182, 76924, 6567, 3208, 43710, 76205])
+    # print("\nPDF - build_heap example 1")
+    # print("-------------------------")
+    # da = DynamicArray([6567, 272, 3208, 42182, 76924, -24347, -87739, 43710, 76205])
+    # h = MinHeap([])
+    # correct = DynamicArray([-87739, 272, -24347, 42182, 76924, 6567, 3208, 43710, 76205])
     
-    # print(h)
+    # # print(h)
    
-    h.build_heap(da)
-    print("------------------", h)
-    print(correct)
+    # h.build_heap(da)
+    # print("------------------", h)
+    # print(correct)
 
 
 
-    print("\nPDF - build_heap example 1")
-    print("--------------------------")
-    da = DynamicArray([46293, -62393, 38037, -36087, 33218, -15177, -3375, 25071, -85085, -59109])
-    h = MinHeap([])
-    correct = DynamicArray([-85085, 46293, -15177, -62393, -59109, 38037, -3375, 25071, -36087, 33218])
+    # print("\nPDF - build_heap example 1")
+    # print("--------------------------")
+    # da = DynamicArray([46293, -62393, 38037, -36087, 33218, -15177, -3375, 25071, -85085, -59109])
+    # h = MinHeap([])
+    # correct = DynamicArray([-85085, 46293, -15177, -62393, -59109, 38037, -3375, 25071, -36087, 33218])
     
-    # print(h)
+    # # print(h)
    
-    h.build_heap(da)
-    print("------------------", h)
-    print(correct)
+    # h.build_heap(da)
+    # print("------------------", h)
+    # print(correct)
 
     
 
-    print("\nPDF - build_heap example 1")
-    print("--------------------------")
-    da = DynamicArray([100, 20, 6, 200, 90, 150, 300])
-    h = MinHeap(['zebra', 'apple'])
-    print(h)
-    h.build_heap(da)
-    print(h)
-
-
-    print("--------------------------")
-    print("Inserting 500 into input DA:")
-    da[0] = 500
-    print(da)
-
-    print("Your MinHeap:")
-    print(h)
-    if h.get_min() == 500:
-        print(
-            "Error: input array and heap's underlying DA reference same object in memory"
-        )
-
-    # print("\nPDF - heapsort example 1")
-    # print("------------------------")
+    # print("\nPDF - build_heap example 1")
+    # print("--------------------------")
     # da = DynamicArray([100, 20, 6, 200, 90, 150, 300])
-    # print(f"Before: {da}")
-    # heapsort(da)
-    # print(f"After:  {da}")
+    # h = MinHeap(['zebra', 'apple'])
+    # print(h)
+    # h.build_heap(da)
+    # print(h)
 
-    # print("\nPDF - heapsort example 2")
-    # print("------------------------")
-    # da = DynamicArray(['monkey', 'zebra', 'elephant', 'horse', 'bear'])
-    # print(f"Before: {da}")
-    # heapsort(da)
-    # print(f"After:  {da}")
+
+    # print("--------------------------")
+    # print("Inserting 500 into input DA:")
+    # da[0] = 500
+    # print(da)
+
+    # print("Your MinHeap:")
+    # print(h)
+    # if h.get_min() == 500:
+    #     print(
+    #         "Error: input array and heap's underlying DA reference same object in memory"
+    #     )
+
+    print("\nPDF - heapsort example 1")
+    print("------------------------")
+    da = DynamicArray([100, 20, 6, 200, 90, 150, 300])
+    print(f"Before: {da}")
+    heapsort(da)
+    print(f"After:  {da}")
+
+    print("\nPDF - heapsort example 2")
+    print("------------------------")
+    da = DynamicArray(['monkey', 'zebra', 'elephant', 'horse', 'bear'])
+    print(f"Before: {da}")
+    heapsort(da)
+    print(f"After:  {da}")
 
     # print("\nPDF - size example 1")
     # print("--------------------")
