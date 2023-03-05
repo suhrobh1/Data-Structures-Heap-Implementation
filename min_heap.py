@@ -174,10 +174,23 @@ def heapsort(da: DynamicArray) -> None:
     n = da.length()
     for i in range(n // 2 - 1, -1, -1): 
        _percolate_down(da, i)  
+
     for i in range(n-1, 0, -1): 
         da[i], da[0] = da[0], da[i] 
         _percolate_down(da, 0)
 
+
+    i=0
+    size = da.length()
+    while(i<size//2):
+ 
+    #swap present and preceding numbers at time and jump to second element after swap
+        da[i],da[size-i-1]=da[size-i-1],da[i]
+       
+    #skip if present and preceding numbers indexes are same
+        if((i!=i+1 and size-i-1 != size-i-2) and (i!=size-i-2 and size-i-1!=i+1)):
+            da[i+1],da[size-i-2]=da[size-i-2],da[i+1]
+        i+=2
 
     
     # while node_to_check_index > 0:
