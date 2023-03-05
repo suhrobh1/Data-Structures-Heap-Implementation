@@ -172,13 +172,13 @@ def heapsort(da: DynamicArray) -> None:
     
 
     n = da.length()
-    for i in range(n, - 1, -1): 
-       _percolate_down(da, i)  
+    for i in range(n // 2 - 1, -1, -1): 
+       _percolate_down(da, i, n)  
 
     for i in range(n-1, 0, -1): 
         da[i], da[0] = da[0], da[i] 
 
-        _percolate_down(da, 0)
+        _percolate_down(da, 0, i)
     
     
 
