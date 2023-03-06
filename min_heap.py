@@ -1,9 +1,9 @@
-# Name:
-# OSU Email:
+# Name: Suhrob Hasanov 
+# OSU Email: hasanovs@oregonstate.edu
 # Course: CS261 - Data Structures
-# Assignment:
-# Due Date:
-# Description:
+# Assignment: Assignment 5
+# Due Date: 3/6/23
+# Description: Implementation of Heap
 
 from dynamic_array import *
 
@@ -41,9 +41,10 @@ class MinHeap:
 
     def add(self, node: object) -> None:
         """
-        TODO: Write this implementation
+        Adds node to the heap. 
         """
 
+        # If the node is empty 
         if self._heap.is_empty():
             self._heap.append(node)
             return
@@ -51,24 +52,26 @@ class MinHeap:
         self._heap.append(node)
         node_index = self._heap.length() - 1
         parent_index = (node_index - 1) // 2
-        # new_node = self._heap[node_index]
         parent = self._heap[parent_index]
 
+        # While parent node is larger than child, swap them
         while parent > node:
             temp = parent
             self._heap[parent_index] = node
             self._heap[node_index] = temp
             node_index = parent_index
-
+            
+            # When at the start of the heap
             if node_index == 0:
                 return
+            # Increment to continue
             else:
                 parent_index = (node_index - 1) // 2
                 parent = self._heap[parent_index]
 
     def is_empty(self) -> bool:
         """
-        TODO: Write this implementation
+        Returns True/False depending if empty/not empty.
         """
         if self._heap.length():
             return False
@@ -77,9 +80,8 @@ class MinHeap:
 
     def get_min(self) -> object:
         """
-        TODO: Write this implementation
+        Returns the min value (min node) of the heap. If heap is empty it raises an exception.
         """
-
         if self._heap.length():
             return self._heap[0]
         else:
@@ -87,12 +89,10 @@ class MinHeap:
 
     def remove_min(self) -> object:
         """
-        TODO: Write this implementation
+        Removes min node from the heap.
         """
-
         if self._heap.is_empty():
             raise MinHeapException
-
         return_value = self._heap[0]
 
         # If heap has one element
@@ -105,7 +105,7 @@ class MinHeap:
         # Deleting the last element
         self._heap.remove_at_index(self._heap.length() - 1)
 
-
+        # If heap has only two elements
         if self._heap.length() == 2:
             if self._heap[0] > self._heap[1]:
                 temp = self._heap[0]
@@ -113,43 +113,39 @@ class MinHeap:
                 self._heap[1] = temp
                 return return_value
             
+        # Once item deleted, we percolate the new min node
         _percolate_down(self._heap, 0)
 
         return return_value
     
 
-
-    
-
-
     def build_heap(self, da: DynamicArray) -> None:
         """
-        TODO: Write this implementation
+        Builds heap from the given array.
         """
 
+        # Creating the heap in the block
         self._heap = DynamicArray()
-
         for i in range(0, da.length()):
              self._heap.append(da[i])
 
+        # If only two values in heap
         if self._heap.length() == 2:
             if self._heap[0] > self._heap[1]:
                 self._heap[0], self._heap[1] = self._heap[1], self._heap[0]
                 return
-
-        node_to_check_index = (self._heap.length() // 2) - 1
+            
         # This is what we will pass to heapify
-
-        
+        node_to_check_index = (self._heap.length() // 2) - 1
+        # Percolating till get to front of heap
         while node_to_check_index >= 0:
             _percolate_down(self._heap, node_to_check_index)
             node_to_check_index = node_to_check_index - 1
             
 
-
     def size(self) -> int:
         """
-        TODO: Write this implementation
+        Returns the sixe of the heap.
         """
         if self._heap.length():
             return self._heap.length()
@@ -158,7 +154,7 @@ class MinHeap:
 
     def clear(self) -> None:
         """
-        TODO: Write this implementation
+        Clears the heap.
         """
         self._heap = DynamicArray()
     
@@ -166,76 +162,50 @@ class MinHeap:
 
 def heapsort(da: DynamicArray) -> None:
     """
-    TODO: Write this implementation
+    Sorts the heap.
     """
-#    node_to_check_index = da.length() -1
     
-
+    # Variable for length of array
     n = da.length()
+
+    # Iterating through values and percolating. Reducing length passed to percolate. 
     for i in range(n // 2 - 1, -1, -1): 
        _percolate_down(da, i, n)  
-
     for i in range(n-1, 0, -1): 
         da[i], da[0] = da[0], da[i] 
-
         _percolate_down(da, 0, i)
     
-    
-
-    # while node_to_check_index >= 0:
-
-    #     # print(da[node_to_check_index])
-    #     # da[node_to_check_index], da[0] = da[0], da[node_to_check_index]
-    #     slice_end = node_to_check_index + 1
-    #     sliced_da = da.slice(0, slice_end)
-    #     print(sliced_da)
-    #     # _percolate_down(da.slice(0, slice_end), 0 )
-        
-    #     node_to_check_index -= 1  
-
-    # i=0
-    # size = da.length()
-    # while(i<size//2):
- 
-    # #swap present and preceding numbers at time and jump to second element after swap
-    #     da[i],da[size-i-1]=da[size-i-1],da[i]
-       
-    # #skip if present and preceding numbers indexes are same
-    #     if((i!=i+1 and size-i-1 != size-i-2) and (i!=size-i-2 and size-i-1!=i+1)):
-    #         da[i+1],da[size-i-2]=da[size-i-2],da[i+1]
-    #     i+=2
-
-    
-   
-
 
 
 def _percolate_down(da: DynamicArray, node_to_check_index: int, length=None) -> None:
     """
-        TODO: Write your implementation
-        """
+    Percolates the passed value down the passed array. Accepts optional third value for length. 
+    """
     if length is None:
         da_length = da.length()
     else:
         da_length = length
 
-
+    # While not at he head of the heap and not beyond array size
     while 0 <=node_to_check_index<da_length:
         child= None
+        # Establishing children of node to be percolated down
         child_1_index = 2 * node_to_check_index + 1
         child_2_index = 2 * node_to_check_index + 2
 
+        # Establishing the child that would be swapped and whether node needs to be swaped at all
         if child_2_index < da_length and da[child_2_index] < da[node_to_check_index]:
             if da[child_2_index] < da[child_1_index]:
                 child = child_2_index
             else:
                 child = child_1_index
-                
         elif child_1_index < da_length and da[child_1_index] < da[node_to_check_index]:
             child = child_1_index
 
+        # If no child we can stop percolation
         if child is None:
             return
+        # Increment to continue the while loop (percolation)
         else:
             da[node_to_check_index], da[child] = da[child], da[node_to_check_index]
             node_to_check_index = child
